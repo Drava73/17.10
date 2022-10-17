@@ -24,30 +24,53 @@ public:
 		ofstream save("Person.txt", ios::app);
 		save << name << endl
 			<< tel << endl
-			<< age;
+			<< age << endl
+			<< addrs << endl
+			<< job;
 		save.close();
 	}
 	void Print()
 	{
 		Person temp;
 		ifstream r("Person.txt");
-		do
+		if (r.is_open())
 		{
-			r >> temp.name >> temp.tel >> temp.age;
+			r >> temp.name >> temp.tel >> temp.age >> temp.addrs >> temp.job;
 			cout << "Name: " << temp.name << endl
 				<< "Tel: " << temp.tel << endl
-				<< "Age: " << temp.age << endl;
-		} while (!r.eof());
+				<< "Age: " << temp.age << endl
+				<< "Address: " << temp.addrs << endl
+				<< "Job: " << temp.job << endl;
+			cout << endl;
+		} while ( r.eof());
 		r.close();
+		 
 
 	}
+
+	void InPerson() {
+		cout << "Name: ";
+		cin >> name;
+		cout << endl << "Tel: ";
+		cin >> tel;
+		cout << endl << "Age: ";
+		cin >> age;
+		cout << endl << "Address: ";
+		cin >> addrs;
+		cout << endl << "Job: ";
+		cin >> job;
+		cout << endl;
+	}
+
+
 };
 
 int main()
 {
-	Person obj("Ivan", "380973563534", 20);
+	Person obj;
+	obj.InPerson();
 	obj.Save();
-	Person obj2("Irina", "38565481515", 45, "38565481515", "38565481515");
-	obj2.Save();
-	obj2.Print();
+	obj.Print();
+	Person obj1;
+	
 }
